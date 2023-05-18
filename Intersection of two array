@@ -1,0 +1,28 @@
+APPROACH 1:  T.c-> o(n^2)
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+         vector<int>res;
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        for(int i=0;i<nums1.size();i++){
+            for(int j=0;j<nums2.size();j++){
+                if(nums1[i] == nums2[j]){
+                 res.push_back(nums1[i]);   
+                }
+            }
+        }
+        set<int>s;
+        for(auto it: res){
+            s.insert(it);
+        }
+        res.clear();
+        for(auto it=s.begin();it!=s.end();it++){
+            res.push_back(*it);
+        }
+        return res;
+    }
+};
+
+APPROACH 2:  T.c-> 
