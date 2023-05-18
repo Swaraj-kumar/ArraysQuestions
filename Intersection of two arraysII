@@ -1,0 +1,45 @@
+APPROACH-1  using two pointers
+
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        
+        vector<int>res;
+        int i=0,j=0;
+        while(i<nums1.size() && j <nums2.size()){
+            if(nums1[i] == nums2[j]){
+                res.push_back(nums1[i]);
+                i++,j++;
+            }
+            else if(nums1[i] < nums2[j]){
+                i++;
+            }
+            else{
+                j++;
+            }
+        }
+        return res;
+    }
+};
+
+APPROACH-2 using multisets
+
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        multiset<int>s;
+        for(auto it: nums1){
+            s.insert(it);
+        }
+        nums1.clear();
+        for(int i=0;i<nums2.size();i++){
+            if(s.find(nums2[i]) != s.end()){
+                nums1.push_back(nums2[i]);
+                s.erase(s.find(nums2[i]));
+            }
+        }
+        return nums1;
+    }
+};
